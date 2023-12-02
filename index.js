@@ -18,7 +18,7 @@ app.use("/auth", authRoutes);
 // Define user routes
 app.use("/user", userRoutes);
 
-app.get("/test", () => {
+app.get("/test", (req, res) => {
   res.json({ message: "Test successful" });
 });
 
