@@ -61,7 +61,7 @@ router.get("/websites", authenticate, async (req, res) => {
     const userId = req.user.id;
 
     const userWebsites = await Website.find({ owner: userId });
-    return res.status(400).json({ userWebsites });
+    return res.status(200).json({ userWebsites });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
@@ -137,11 +137,9 @@ function validateUpdateFields(req, res, next) {
     !instagram_link &&
     !facebook_link
   ) {
-    return res
-      .status(400)
-      .json({
-        error: "At least one field is required for updating the website.",
-      });
+    return res.status(400).json({
+      error: "At least one field is required for updating the website.",
+    });
   }
 
   next();
