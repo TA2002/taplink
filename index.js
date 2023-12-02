@@ -18,6 +18,10 @@ app.use("/auth", authRoutes);
 // Define user routes
 app.use("/user", userRoutes);
 
+app.get("/test", () => {
+  res.json({ message: "Test successful" });
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
