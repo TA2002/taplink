@@ -56,6 +56,18 @@ router.post(
   }
 );
 
+router.get("/:id", async (req, res) => {
+  try {
+    const websiteId = req.params.id;
+
+    const website = await Website.findOne({ website_path: websiteId });
+    return res.status(200).json({ website });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 router.get("/websites", authenticate, async (req, res) => {
   try {
     const userId = req.user.id;
